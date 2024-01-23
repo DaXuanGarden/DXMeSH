@@ -5,8 +5,7 @@
 ## 📈 DXMeSH v1.0
 
 -   **One-Click Search Term Generation**: Build your search strategy quickly with simple commands using PubMed MeSH terms.
-
-**Efficient MeSH Searching**: Direct access to the PubMed database, pinpointing medical SCI literature with precise MeSH strategies.
+-   **Efficient MeSH Searching**: Direct access to the PubMed database, pinpointing medical SCI literature with precise MeSH strategies.
 
 ## 🎯 User Guide
 
