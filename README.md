@@ -5,7 +5,10 @@
 ## 📈 DXMeSH v1.0
 
 -   **One-Click Search Term Generation**: Build your search strategy quickly with simple commands using PubMed MeSH terms.
--   **Efficient MeSH Searching**: Direct access to the PubMed database, pinpointing medical SCI literature with precise MeSH strategies. \## 🎯 User Guide
+
+**Efficient MeSH Searching**: Direct access to the PubMed database, pinpointing medical SCI literature with precise MeSH strategies.
+
+## 🎯 User Guide
 
 ## Installation
 
@@ -29,7 +32,7 @@ devtools::install_local("/path/to/DXMeSH_1.0.0.tar.gz", dependencies = TRUE, upg
 
 > If you would like to obtain the package for local installation, leave a message saying 'Da Xuan's DXMeSH', and Da Xuan will send it to you right away! 😊
 
-## Usage
+## 🦸🏻Usage
 
 ### MeSH Query
 
