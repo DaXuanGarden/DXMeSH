@@ -34,10 +34,11 @@ devtools::build("/home/data/t050446/DX_Package/DXMeSH")
 getwd()
 setwd("/home/data/t050446/DX_Package/DXMeSH")
 ######本地安装DCMarkers#####
+gc()
 library(usethis)
 library(devtools)
 install_local("/home/data/t050446/DX_Package/DXMeSH_1.0.0.tar.gz")
-
+devtools::install_github("DaXuanGarden/DXMeSH")
 library(DXMeSH)
 get_mesh("DXMeSH.csv")
 
