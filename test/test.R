@@ -1,6 +1,6 @@
 #####包的检查#####
 getwd()
-setwd("/home/data/t050446/DX_Package/DXMeSH")
+setwd("D:/文档/GitHub/DXMeSH")
 # Load the devtools package
 library(usethis)
 library(utils)
@@ -26,22 +26,24 @@ devtools::document()
 #####包的打包######
 # 假设你的R包项目目录是"DXMarkers"，请将路径替换为你的实际路径
 getwd()
-setwd("/home/data/t050446/DX_Package/DXMeSH")
-# 使用devtools包进行打包
-devtools::build("/home/data/t050446/DX_Package/DXMeSH")
+devtools::build("D:/文档/GitHub/DXMeSH")
 
 ####试运行#####
 getwd()
-setwd("/home/data/t050446/DX_Package/DXMeSH")
+setwd("D:/文档/GitHub/DXMeSH")
 ######本地安装DCMarkers#####
 gc()
 library(usethis)
 library(devtools)
-install_local("/home/data/t050446/DX_Package/DXMeSH_1.0.0.tar.gz")
-devtools::install_github("DaXuanGarden/DXMeSH")
+install_local("D:/文档/GitHub/DXMeSH_1.0.0.tar.gz")
+#devtools::install_github("DaXuanGarden/DXMeSH")
 library(DXMeSH)
 get_mesh("DXMeSH.csv")
 
+# Get writing materials
+get_Writing_materials('引言-1.docx')
+
+get_Writing_materials('引言-1.md')
 
 #######生成并查看说明书#####
 # 使用usethis包添加一个名为"my-vignette"的vignette
