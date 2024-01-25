@@ -32,19 +32,19 @@ add_heading_after_identical_brackets_pair <- function(text) {
   # Use regular expressions to match level-2 headings
   headings_matches <- gregexpr("(?m)^## .*", text, perl = TRUE)
   headings_list <- regmatches(text, headings_matches)[[1]]
-  
+
   # Match any characters inside 【】 brackets
   brackets_matches <- gregexpr("【[^】]*】", text)
   brackets_list <- regmatches(text, brackets_matches)[[1]]
-  
+
   # If there are fewer than two headings or bracket tags, return the original text
   if (length(headings_list) < 1 || length(brackets_list) < 2) {
     return(text)
   }
-  
+
   # Initialize an empty list to store the insertion positions and text
   insertions <- list()
-  
+
   # Iterate over bracket tags
   for (i in seq(from = 1, to = length(brackets_list)-1)) {
     # Check if there are identical consecutive tags
@@ -61,15 +61,15 @@ add_heading_after_identical_brackets_pair <- function(text) {
       insertions[[length(insertions) + 1]] <- list(position = insert_position, text = heading_text)
     }
   }
-  
+
   # Insert the heading text in reverse order and add empty lines before and after
   for (insertion in rev(insertions)) {
     text <- substr_replace(text, paste0("\n\n", insertion$text, "\n\n"), insertion$position, insertion$position)
   }
-  
+
   # Remove any extra empty lines at the end of the text
   text <- gsub("(\n)+$", "", text)
-  
+
   return(text)
 }
 
@@ -102,11 +102,11 @@ add_mark_to_second_bracket <- function(text) {
 get_Writing_materials <- function(input_file) {
   # Obtain the base name of the file without the extension
   base_name <- tools::file_path_sans_ext(basename(input_file))
-  
+
   # Use regular expressions to match numbers at the end
   match <- regexec("-(\\d+)(\\.\\d+)?$", base_name)
   matched_groups <- regmatches(base_name, match)
-  
+
   # If a matching number is found
   if (length(matched_groups[[1]]) > 1) {
     # Extract the major version number
@@ -121,13 +121,13 @@ get_Writing_materials <- function(input_file) {
     # If no matching number, initialize the major version number as 1 and minor version number as 1
     output_base_name <- paste0(base_name, "-1.1")
   }
-  
+
   # Get the file extension
   file_ext <- tools::file_ext(input_file)
-  
+
   # Reconstruct the complete file name including the extension
   output_file <- paste0(output_base_name, ".", file_ext)
-  
+
   if (file_ext == "docx") {
     # Convert DOCX to MD
     md_file <- paste0(base_name, ".md")
@@ -144,21 +144,21 @@ get_Writing_materials <- function(input_file) {
   } else if (file_ext != "md") {
     stop("Unsupported file type: ", file_ext)
   }
-  
+
   # The following are the steps for text processing
   md_text <- read_markdown(input_file)
-  
+
   md_text <- duplicate_brackets_and_contents_with_lines(md_text)
   md_text <- add_heading_after_identical_brackets_pair(md_text)
   md_text <- add_mark_to_second_bracket(md_text)
-  
+
   # Assume final_text is the processed text
   final_text <- md_text  # You should apply your processing functions here
-  
+
   # Write back to the Markdown file
   md_output_file <- paste0(output_base_name, ".md")
   write_markdown(final_text, md_output_file)
-  
+
   # Convert back to Word document
   docx_output_file <- paste0(output_base_name, ".docx")
   # Assume you're using rmarkdown's render function here to render the document
@@ -170,6 +170,3 @@ get_Writing_materials <- function(input_file) {
   message("\n😊Congratulations! Your writing material was successfully processed!🎉\n")
 }
 
-
-# Get writing materials
-get_Writing_materials('引言-1.docx')
