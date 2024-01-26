@@ -17,7 +17,7 @@ Imports:
     httr,
     rmarkdown,
     stringi
-SystemRequirements: pandoc (>= 1.12.3)
+SystemRequirements: pandoc
 RoxygenNote: 7.2.3
 Suggests: 
     knitr
