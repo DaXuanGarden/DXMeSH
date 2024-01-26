@@ -206,13 +206,13 @@ get_Writing_materials <- function(input_file) {
   if (file_ext == "docx") {
     # Convert DOCX to MD
     md_file <- paste0(base_name, ".md")
-    system(paste("pandoc -o", shQuote(md_file), "-f docx -t markdown", shQuote(input_file)))
+    #system(paste("pandoc -o", shQuote(md_file), "-f docx -t markdown", shQuote(input_file)))###Some computers are invalid
+    rmarkdown::pandoc_convert(input = input_file, output = md_file, to = "markdown")
     # Read the Markdown file
     md_text <- readLines(md_file)
     # Use regular expressions to replace all \[number\] or \[number, number\] in the text
     md_text <- gsub("\\\\\\[(.*?)\\\\\\]", "[\\1]", md_text)
     # Write back to the Markdown file
-    #writeLines(md_text, md_file)###部分电脑无效
     write_markdown(md_text, md_file)
 
     # Print the path
