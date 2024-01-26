@@ -33,11 +33,11 @@ gc()
 library(usethis)
 library(devtools)
 install_local("D:/文档/GitHub/DXMeSH_1.1.0.tar.gz")
-#devtools::install_github("DaXuanGarden/DXMeSH",force = TRUE)
+devtools::install_github("DaXuanGarden/DXMeSH",force = TRUE)
 library(DXMeSH)
 #get_mesh("DXMeSH.csv")
 # Get writing materials
-get_Writing_materials('Introduction-1.docx')
+get_Writing_materials('D:/文档/GitHub/DXMeSH/test/Sample file/Introduction-1.docx')
 
 get_Writing_materials('Introduction-1.md')
 
