@@ -1,12 +1,35 @@
+
+#' Auxiliary function: Inserts text at a specific position in the string
+#'
+#' @description
+#' This function takes a string and inserts a replacement string between the start and stop positions.
+#' @param string The original string.
+#' @param replacement The string to be inserted.
+#' @param start The starting position for the replacement.
+#' @param stop The ending position for the replacement.
+#' @return Returns a modified string with the replacement text inserted.
+#' @export
+#' @examples
+#' substr_replace("The quick brown fox", "happy ", 10, 10)
+
 library(rmarkdown)
 library(stringi)
-
 # Auxiliary function: inserts text at a specific position in the string
 substr_replace <- function(string, replacement, start, stop) {
   prefix <- substring(string, 1, start)
   suffix <- substring(string, stop + 1, nchar(string))
   return(paste0(prefix, replacement, suffix))
 }
+#' Read the Markdown file
+#'
+#' @description
+#' This function reads the content of a markdown file and returns it as a single string.
+#' @param file_path The path to the markdown file.
+#' @return Returns the content of the markdown file as a single string.
+#' @export
+#' @examples
+#' read_markdown("example.md")
+
 
 # Read the Markdown file
 read_markdown <- function(file_path) {
@@ -14,11 +37,29 @@ read_markdown <- function(file_path) {
   return(paste(lines, collapse = "\n"))
 }
 
+#' Write back to Markdown file
+#'
+#' @description
+#' This function writes a string of text back to a markdown file.
+#' @param text The text to be written to the file.
+#' @param file_path The path where the markdown file will be saved.
+#' @return This function does not return a value.
+#' @export
+#' @examples
+#' write_markdown("# New Markdown Content", "example.md")
 # Write back to Markdown file
 write_markdown <- function(text, file_path) {
   writeLines(text, con = file_path, useBytes = TRUE)
 }
-
+#' Duplicate Brackets and Their Contents with Lines
+#'
+#' @description
+#' This function finds all occurrences of non-empty brackets and their contents within the text, duplicates them, and adds empty lines for spacing. It also processes empty brackets to include additional formatting.
+#' @param text The text containing brackets for duplication and formatting.
+#' @return Returns the modified text with duplicated bracket contents and additional lines.
+#' @export
+#' @examples
+#' duplicate_brackets_and_contents_with_lines("This is a test.【Content】More text.")
 duplicate_brackets_and_contents_with_lines <- function(text) {
   #First process non-empty [] and its content
   modified_text <- gsub("(【[^】]+】)", "\n\n\\1\n\n\\1\n\n", text)
@@ -27,7 +68,15 @@ duplicate_brackets_and_contents_with_lines <- function(text) {
   return(modified_text)
 }
 
-# Add a secondary title after pairs of identical brackets
+#' Add a Secondary Title After Identical Brackets Pair
+#'
+#' @description
+#' For pairs of identical bracketed contents, this function adds a secondary title after each pair to improve document structure and readability.
+#' @param text The text in which to identify and enhance pairs of identical brackets.
+#' @return Returns the text with added secondary titles after each pair of identical brackets.
+#' @export
+#' @examples
+#' add_heading_after_identical_brackets_pair("Text before.【Same】Text in between.【Same】Text after.")
 add_heading_after_identical_brackets_pair <- function(text) {
   # Use regular expressions to match level-2 headings
   headings_matches <- gregexpr("(?m)^## .*", text, perl = TRUE)
@@ -72,8 +121,18 @@ add_heading_after_identical_brackets_pair <- function(text) {
 
   return(text)
 }
-
+#' Add Mark to Second Bracket of Every Pair with Same Content
+#'
+#' @description
+#' This function adds a specific mark (###) before the second bracket of every pair that has identical content within the text, aiding in the emphasis or distinction of repeated elements.
+#' @param text The text in which to mark the second bracket of each pair with identical content.
+#' @return Returns the modified text with marks added before the second bracket of every identical pair.
+#' @export
+#' @examples
+#' add_mark_to_second_bracket("Some introductory text 【Bracket Content】 followed by more text and then 【Bracket Content】 again.")
+# Add a secondary title after pairs of identical brackets
 # Define a function to process text by adding ### before the second bracket of every pair with the same content
+
 add_mark_to_second_bracket <- function(text) {
   # Split text into lines
   lines <- unlist(stringi::stri_split_lines(text))
@@ -97,6 +156,15 @@ add_mark_to_second_bracket <- function(text) {
   # Reassemble the text lines
   return(paste(lines, collapse = "\n"))
 }
+#' Main function to process the document and convert its format
+#'
+#' @description
+#' This function processes an input document, applies text processing functions, and saves the results in markdown and Word formats.
+#' @param input_file The path to the input file which should be processed.
+#' @return This function does not return a value but saves processed output in specified formats.
+#' @export
+#' @examples
+#' get_Writing_materials("引言-1.docx")
 
 # Main function to process the document and convert its format
 get_Writing_materials <- function(input_file) {

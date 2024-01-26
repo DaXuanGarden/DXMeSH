@@ -6,25 +6,21 @@ library(usethis)
 library(utils)
 library(devtools)
 # install.packages(c("devtools", "roxygen2", "usethis", "testthat"))
-#detach(package:DXMarkers)
+#detach(package:DXMeSH)
 rm(list = c())
 # 在R控制台中运行以下命令
 library(roxygen2)
 roxygen2::roxygenize()
-
-# Remove the function from global environment
-rm(list = c("get_mesh_terms"))
-
 # Load the package
 devtools::load_all()
 # Generate documentation
 roxygen2::roxygenize()
 devtools::document()
 # Check the package
-# check()
+#check()
 
 #####包的打包######
-# 假设你的R包项目目录是"DXMarkers"，请将路径替换为你的实际路径
+# 假设你的R包项目目录是"DXMeSH"，请将路径替换为你的实际路径
 getwd()
 devtools::build("D:/文档/GitHub/DXMeSH")
 
@@ -46,7 +42,7 @@ get_Writing_materials('引言-1.md')
 
 #######生成并查看说明书#####
 # 使用usethis包添加一个名为"my-vignette"的vignette
-usethis::use_vignette("DXMarkers")
+usethis::use_vignette("DXMeSH")
 
 # Load devtools package
 library(devtools)
@@ -55,4 +51,4 @@ library(devtools)
 build_vignettes()
 
 # 查看使用说明书
-browseVignettes("DXMarkers")
+browseVignettes("DXMeSH")

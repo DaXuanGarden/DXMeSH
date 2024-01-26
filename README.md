@@ -57,23 +57,6 @@ get_mesh("DXMeSH.csv")
 > ![](test/sodq8ixXMQ.png)
 >
 > ![image-20240123081341728](test/B3BGNwq33k.png)
->
-> ### Prepare data
-Under the guidance of "Scientific Research Journal", prepare `Introduction-1`.
-
-### Get writing materials
-- It's worth mentioning that `DXMeSH v1.1` supports files in both `Word` and `Markdown` formats, so you can use various tools like `Microsoft Word`, `WPS Office`, `FlowUs`, `Typora`, etc., to build your material library. Isn't that thoughtful? Go ahead and praise Daxuan! Haha.
-
-```
-library(DXMeSH)
-## If it's a Word file
-get_Writing_materials('Introduction-1.docx')
-## If it's a Markdown file
-get_Writing_materials('Introduction-1.md')
-```
-### Congratulations！
-
-Thus, `DXMeSH v1.1` has used `Introduction-1` to generate `Introduction-2.1`, and through `Get writing materials`, it has produced files in both `Introduction-2.1.docx` and `Introduction-2.1.md` formats to meet our different needs. Furthermore, `DXMeSH` will also automatically copy `Introduction-2.2` for us to use later in cutting to create the `Introduction-2.3` material library. Of course, if you find it difficult to understand the process of making a material library mentioned in this article, you can join the Knowledge Planet to learn more!
 
 ## 🐾 Future Updates
 
