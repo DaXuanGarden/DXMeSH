@@ -166,6 +166,7 @@ get_Writing_materials <- function(input_file) {
   # Print the path
   print(md_output_file)
   print(docx_output_file)
+
   # Now, let's create the file names for the new version 2.2 copies
   md_copy_file <- sub("2.1", "2.2", md_output_file)
   docx_copy_file <- sub("2.1", "2.2", docx_output_file)
