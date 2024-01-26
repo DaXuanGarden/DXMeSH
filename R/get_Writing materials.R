@@ -256,10 +256,6 @@ get_Writing_materials <- function(input_file) {
   print(md_copy_file)
   print(docx_copy_file)
   # Assuming you have variables md_output_file and docx_output_file already set with the file paths
-  # Let's say these are the original files with version 2.1
-  md_output_file <- "path/to/your/original/file-2.1.md"
-  docx_output_file <- "path/to/your/original/file-2.1.docx"
-
   # Create the file names for the new blank version 2.3
   md_blank_file <- sub("2.1", "2.3", md_output_file)
   docx_blank_file <- sub("2.1", "2.3", docx_output_file)
