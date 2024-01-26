@@ -3,6 +3,7 @@
 #'
 #' @description
 #' This function takes a string and inserts a replacement string between the start and stop positions.
+#' @name substr_replace
 #' @param string The original string.
 #' @param replacement The string to be inserted.
 #' @param start The starting position for the replacement.
@@ -24,6 +25,7 @@ substr_replace <- function(string, replacement, start, stop) {
 #'
 #' @description
 #' This function reads the content of a markdown file and returns it as a single string.
+#' @name read_markdown
 #' @param file_path The path to the markdown file.
 #' @return Returns the content of the markdown file as a single string.
 #' @export
@@ -41,6 +43,7 @@ read_markdown <- function(file_path) {
 #'
 #' @description
 #' This function writes a string of text back to a markdown file.
+#' @name write_markdown
 #' @param text The text to be written to the file.
 #' @param file_path The path where the markdown file will be saved.
 #' @return This function does not return a value.
@@ -55,6 +58,7 @@ write_markdown <- function(text, file_path) {
 #'
 #' @description
 #' This function finds all occurrences of non-empty brackets and their contents within the text, duplicates them, and adds empty lines for spacing. It also processes empty brackets to include additional formatting.
+#' @name duplicate_brackets_and_contents_with_lines
 #' @param text The text containing brackets for duplication and formatting.
 #' @return Returns the modified text with duplicated bracket contents and additional lines.
 #' @export
@@ -72,6 +76,7 @@ duplicate_brackets_and_contents_with_lines <- function(text) {
 #'
 #' @description
 #' For pairs of identical bracketed contents, this function adds a secondary title after each pair to improve document structure and readability.
+#' @name add_heading_after_identical_brackets_pair
 #' @param text The text in which to identify and enhance pairs of identical brackets.
 #' @return Returns the text with added secondary titles after each pair of identical brackets.
 #' @export
@@ -125,6 +130,7 @@ add_heading_after_identical_brackets_pair <- function(text) {
 #'
 #' @description
 #' This function adds a specific mark (###) before the second bracket of every pair that has identical content within the text, aiding in the emphasis or distinction of repeated elements.
+#' @name add_mark_to_second_bracket
 #' @param text The text in which to mark the second bracket of each pair with identical content.
 #' @return Returns the modified text with marks added before the second bracket of every identical pair.
 #' @export
@@ -160,6 +166,7 @@ add_mark_to_second_bracket <- function(text) {
 #'
 #' @description
 #' This function processes an input document, applies text processing functions, and saves the results in markdown and Word formats.
+#' @name get_Writing_materials
 #' @param input_file The path to the input file which should be processed.
 #' @return This function does not return a value but saves processed output in specified formats.
 #' @export
