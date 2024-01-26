@@ -212,7 +212,9 @@ get_Writing_materials <- function(input_file) {
     # Use regular expressions to replace all \[number\] or \[number, number\] in the text
     md_text <- gsub("\\\\\\[(.*?)\\\\\\]", "[\\1]", md_text)
     # Write back to the Markdown file
-    writeLines(md_text, md_file)
+    #writeLines(md_text, md_file)###部分电脑无效
+    write_markdown(md_text, md_file)
+
     # Print the path
     print(md_file)
     input_file <- md_file
