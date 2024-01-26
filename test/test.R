@@ -36,10 +36,9 @@ gc()
 library(usethis)
 library(devtools)
 install_local("D:/文档/GitHub/DXMeSH_1.1.0.tar.gz")
-#devtools::install_github("DaXuanGarden/DXMeSH")
+devtools::install_github("DaXuanGarden/DXMeSH")
 library(DXMeSH)
 #get_mesh("DXMeSH.csv")
-
 # Get writing materials
 get_Writing_materials('引言-1.docx')
 
