@@ -58,6 +58,40 @@ get_mesh("DXMeSH.csv")
 >
 > ![image-20240123081341728](test/B3BGNwq33k.png)
 
+## Get Writing Materials
+
+### Prepare Data
+
+![](test/dJcZhNNkub.png)
+
+![](test/O2WPlCNfCR.png)
+
+### Get Writing Materials
+
+\- It's worth mentioning that \`DXMeSH v1.1\` supports both \`Word\` and \`Markdown\` file formats, so you can use various tools such as \`Microsoft Word\`, \`WPS Office\`, \`FlowUs\`, \`Typora\`, etc., to build your material library. Isn't that thoughtful? Now, go ahead and praise Da Xuan! Ha ha.
+
+```         
+library(DXMeSH)
+
+## If it is a Word file
+
+get_Writing_materials('Introduction-1.docx')
+
+## If it is a Markdown file
+
+get_Writing_materials('Introduction-1.md')
+```
+
+### Congratulations!
+
+![](test/KSprYBFedW.png)
+
+![](test/VNN4f0Kkfr.png)
+
+![](test/2t0eoggBfC.png)
+
+With this, \`DXMeSH v1.1\` has used \`Introduction-1\` to generate \`Introduction-2.1\`, and through \`Get Writing Materials\`, it has produced two file formats: \`Introduction-2.1.docx\` and \`Introduction-2.1.md\`, to meet our different needs. Additionally, \`DXMeSH\` will automatically copy \`Introduction-2.2\` for us to use later in cutting to create the \`Introduction-2.3\` material library.
+
 ## 🐾 Future Updates
 
 The future updates are eagerly anticipated. We are committed to creating a comprehensive, precise, and efficient medical paper search tool:
