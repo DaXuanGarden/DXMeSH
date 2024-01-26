@@ -255,7 +255,29 @@ get_Writing_materials <- function(input_file) {
   # Print the paths of the newly copied files
   print(md_copy_file)
   print(docx_copy_file)
+  # Assuming you have variables md_output_file and docx_output_file already set with the file paths
+  # Let's say these are the original files with version 2.1
+  md_output_file <- "path/to/your/original/file-2.1.md"
+  docx_output_file <- "path/to/your/original/file-2.1.docx"
 
+  # Create the file names for the new blank version 2.3
+  md_blank_file <- sub("2.1", "2.3", md_output_file)
+  docx_blank_file <- sub("2.1", "2.3", docx_output_file)
+
+  # Create a blank Markdown file version 2.3
+  file.create(md_blank_file)
+
+  # Now, convert the blank Markdown file to a blank Word document version 2.3
+  library(rmarkdown)
+
+  # Convert Markdown to Word document
+  rmarkdown::render(input = md_blank_file,
+                    output_format = "word_document",
+                    output_file = docx_blank_file,
+                    quiet = TRUE) # quiet = TRUE to suppress messages
+
+  print(md_blank_file)
+  print(docx_blank_file)
   # Print a friendly success message
   message("\n😊Congratulations! Your writing material was successfully processed!🎉\n")
 }

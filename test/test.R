@@ -8,9 +8,6 @@ library(devtools)
 # install.packages(c("devtools", "roxygen2", "usethis", "testthat"))
 #detach(package:DXMeSH)
 rm(list = c())
-rm(list = c("add_heading_after_identical_brackets_pair", "add_mark_to_second_bracket",
-            "duplicate_brackets_and_contents_with_lines", "get_Writing_materials", "read_markdown",
-            "write_markdown","substr_replace"))
 
 # 在R控制台中运行以下命令
 library(roxygen2)
