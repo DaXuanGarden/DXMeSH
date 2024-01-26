@@ -37,9 +37,9 @@ install_local("D:/文档/GitHub/DXMeSH_1.1.0.tar.gz")
 library(DXMeSH)
 #get_mesh("DXMeSH.csv")
 # Get writing materials
-get_Writing_materials('引言-1.docx')
+get_Writing_materials('Introduction-1.docx')
 
-get_Writing_materials('引言-1.md')
+get_Writing_materials('Introduction-1.md')
 
 #######生成并查看说明书#####
 # 使用usethis包添加一个名为"my-vignette"的vignette

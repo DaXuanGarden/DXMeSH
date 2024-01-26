@@ -171,7 +171,7 @@ add_mark_to_second_bracket <- function(text) {
 #' @return This function does not return a value but saves processed output in specified formats.
 #' @export
 #' @examples
-#' get_Writing_materials("引言-1.docx")
+#' get_Writing_materials("Introduction-1.docx")
 
 # Main function to process the document and convert its format
 get_Writing_materials <- function(input_file) {
