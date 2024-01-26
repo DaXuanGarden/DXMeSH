@@ -230,7 +230,7 @@ get_Writing_materials <- function(input_file) {
   # Convert back to Word document
   docx_output_file <- paste0(output_base_name, ".docx")
   # Assume you're using rmarkdown's render function here to render the document
-  render(md_output_file, output_format = "word_document", output_file = docx_output_file)
+  rmarkdown::render(md_output_file, output_format = "word_document", output_file = docx_output_file)
   # Print the path
   print(md_output_file)
   print(docx_output_file)
