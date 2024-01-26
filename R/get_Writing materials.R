@@ -166,6 +166,20 @@ get_Writing_materials <- function(input_file) {
   # Print the path
   print(md_output_file)
   print(docx_output_file)
+  # Now, let's create the file names for the new version 2.2 copies
+  md_copy_file <- sub("2.1", "2.2", md_output_file)
+  docx_copy_file <- sub("2.1", "2.2", docx_output_file)
+
+  # Copy the markdown file to the new version 2.2
+  file.copy(md_output_file, md_copy_file)
+
+  # Copy the Word document file to the new version 2.2
+  file.copy(docx_output_file, docx_copy_file)
+
+  # Print the paths of the newly copied files
+  print(md_copy_file)
+  print(docx_copy_file)
+
   # Print a friendly success message
   message("\n😊Congratulations! Your writing material was successfully processed!🎉\n")
 }
