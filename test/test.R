@@ -41,7 +41,7 @@ library(DXMeSH)
 get_Writing_materials('Introduction-1.docx')
 
 get_Writing_materials('Introduction-1.md')
-
+get_Writing_materials
 #######生成并查看说明书#####
 # 使用usethis包添加一个名为"my-vignette"的vignette
 usethis::use_vignette("DXMeSH")
