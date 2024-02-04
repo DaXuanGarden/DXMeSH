@@ -16,5 +16,5 @@ This function does not return a value but saves processed output in specified fo
 This function processes an input document, applies text processing functions, and saves the results in markdown and Word formats.
 }
 \examples{
-get_Writing_materials("引言-1.docx")
+get_Writing_materials("Introduction-1.docx")
 }
