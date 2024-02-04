@@ -1,4 +1,3 @@
-
 #' Auxiliary function: Inserts text at a specific position in the string
 #'
 #' @description
@@ -126,42 +125,81 @@ add_heading_after_identical_brackets_pair <- function(text) {
 
   return(text)
 }
+
 #' Add Mark to Second Bracket of Every Pair with Same Content
 #'
 #' @description
 #' This function adds a specific mark (###) before the second bracket of every pair that has identical content within the text, aiding in the emphasis or distinction of repeated elements.
-#' @name add_mark_to_second_bracket
+#' @name mark_even_occurrences
 #' @param text The text in which to mark the second bracket of each pair with identical content.
 #' @return Returns the modified text with marks added before the second bracket of every identical pair.
 #' @export
 #' @examples
-#' add_mark_to_second_bracket("Some introductory text 【Bracket Content】 followed by more text and then 【Bracket Content】 again.")
+#' mark_even_occurrences("Some introductory text 【Bracket Content】 followed by more text and then 【Bracket Content】 again.")
 # Add a secondary title after pairs of identical brackets
 # Define a function to process text by adding ### before the second bracket of every pair with the same content
+# Define a function to mark the even occurrences of each repeated title
+mark_even_occurrences <- function(text, mark = "### ") {
+  # Split the text by lines
+  lines <- unlist(strsplit(text, "\n", fixed = TRUE))
+  # Initialize a hash table for title counts
+  title_counts <- list()
 
-add_mark_to_second_bracket <- function(text) {
-  # Split text into lines
-  lines <- unlist(stringi::stri_split_lines(text))
-  # Store the contents of brackets that have been found
-  seen_brackets <- list()
-  # Iterate over lines and add a mark if necessary
+  # Iterate over each line of text
   for (i in seq_along(lines)) {
-    # Detect the format 【...】 with content inside the brackets
-    if (stringi::stri_detect_regex(lines[i], "【.+?】")) {
-      bracket_content <- stringi::stri_match_first_regex(lines[i], "【(.+?)】")[,2]
-      # Check if this bracket content has been encountered before
-      if (!(bracket_content %in% seen_brackets)) {
-        # If not encountered, add it to the list
-        seen_brackets <- c(seen_brackets, bracket_content)
-      } else {
-        # If encountered before, add ###
-        lines[i] <- stringi::stri_replace_first_fixed(lines[i], "【", "### 【")
+    # Current line
+    line <- lines[i]
+    # Check if the line matches the title pattern
+    if (grepl("^【.*】$", line) && !grepl("^【\\s*】$", line)) {
+      # Extract the title from the line
+      title <- line
+      # Initialize count for the title if it appears for the first time
+      if (!title %in% names(title_counts)) {
+        title_counts[[title]] <- 0
+      }
+      # Increment the count
+      title_counts[[title]] <- title_counts[[title]] + 1
+      # Mark the line if this is an even occurrence of the title
+      if ((title_counts[[title]] %% 2) == 0) {
+        lines[i] <- paste(mark, line, sep = "")
       }
     }
   }
-  # Reassemble the text lines
+  # Recombine all lines into a single string to return
   return(paste(lines, collapse = "\n"))
 }
+
+
+#' Normalize brackets and add a marker to the second occurrence within the text
+#'
+#' @description
+#' This function is designed to clean up text by removing newlines within brackets,
+#' replacing them with a single space, and then adding a special mark before the
+#' second occurrence of each bracketed phrase. It is useful for processing and
+#' standardizing text data that may have inconsistent formatting within bracketed terms.
+#'
+#' @name normalize_brackets_and_add_mark
+#' @param text A single string of text that may contain bracketed terms with newlines.
+#'
+#' @return A string of text where newlines within brackets have been replaced with spaces,
+#' and a marker has been added before the second occurrence of each bracketed term.
+#'
+#' @export
+#'
+#' @examples
+#' sample_text <- "This is a sample text with newline characters \\n within【brackets \\n that span \\n multiple lines】."
+#' normalize_brackets_and_add_mark(sample_text)
+normalize_brackets_and_add_mark <- function(text) {
+  # Use a regular expression to replace newlines within brackets with a space
+  text <- gsub("【([^】]*)(\r?\n)+([^】]*)】", "【\\1 \\3】", text)
+
+  # Now call the previously defined function 'mark_even_occurrences'
+  text <- mark_even_occurrences(text)
+
+  return(text)
+}
+
+
 #' Main function to process the document and convert its format
 #'
 #' @description
@@ -175,6 +213,7 @@ add_mark_to_second_bracket <- function(text) {
 
 # Main function to process the document and convert its format
 get_Writing_materials <- function(input_file) {
+  #input_file='Methods-1.docx'
   # Obtain the base name of the file without the extension
   base_name <- tools::file_path_sans_ext(basename(input_file))
 
@@ -222,13 +261,14 @@ get_Writing_materials <- function(input_file) {
     stop("Unsupported file type: ", file_ext)
   }
 
+
   # The following are the steps for text processing
   md_text <- read_markdown(input_file)
 
   md_text <- duplicate_brackets_and_contents_with_lines(md_text)
   md_text <- add_heading_after_identical_brackets_pair(md_text)
-  md_text <- add_mark_to_second_bracket(md_text)
-
+  md_text <- normalize_brackets_and_add_mark(md_text)
+  #md_text <- mark_even_occurrences(md_text)
   # Assume final_text is the processed text
   final_text <- md_text  # You should apply your processing functions here
 
