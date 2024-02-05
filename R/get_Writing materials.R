@@ -251,6 +251,7 @@ get_Writing_materials <- function(input_file) {
     md_text <- readLines(md_file)
     # Use regular expressions to replace all \[number\] or \[number, number\] in the text
     md_text <- gsub("\\\\\\[(.*?)\\\\\\]", "[\\1]", md_text)
+    message("\n😍The writing materials are ready!🐣\n")
     # Write back to the Markdown file
     write_markdown(md_text, md_file)
 
@@ -264,7 +265,8 @@ get_Writing_materials <- function(input_file) {
 
   # The following are the steps for text processing
   md_text <- read_markdown(input_file)
-
+  # Print a friendly success message
+  message("\n🤩Start sorting out your writing materials!🌱\n")
   md_text <- duplicate_brackets_and_contents_with_lines(md_text)
   md_text <- add_heading_after_identical_brackets_pair(md_text)
   md_text <- normalize_brackets_and_add_mark(md_text)
