@@ -213,6 +213,7 @@ normalize_brackets_and_add_mark <- function(text) {
 
 # Main function to process the document and convert its format
 get_Writing_materials <- function(input_file) {
+  input_file='Figure legends-1.docx'
   #input_file='Methods-1.docx'
   # Obtain the base name of the file without the extension
   base_name <- tools::file_path_sans_ext(basename(input_file))
@@ -245,27 +246,28 @@ get_Writing_materials <- function(input_file) {
   if (file_ext == "docx") {
     # Convert DOCX to MD
     md_file <- paste0(base_name, ".md")
-    #system(paste("pandoc -o", shQuote(md_file), "-f docx -t markdown", shQuote(input_file)))###Some computers are invalid
-    rmarkdown::pandoc_convert(input = input_file, output = md_file, to = "markdown")
+    # Assuming Pandoc can handle images, add options as needed
+    rmarkdown::pandoc_convert(input = input_file, output = md_file, to = "markdown", options = c("--extract-media=.", "--standalone"))
     # Read the Markdown file
     md_text <- readLines(md_file)
     # Use regular expressions to replace all \[number\] or \[number, number\] in the text
     md_text <- gsub("\\\\\\[(.*?)\\\\\\]", "[\\1]", md_text)
-    message("\n😍The writing materials are ready!🐣\n")
     # Write back to the Markdown file
     write_markdown(md_text, md_file)
 
-    # Print the path
-    print(md_file)
+    # message the path
+    message(paste("🔥Successfully generated Markdown file：", basename(md_file)))
+
+    message("\n😍The writing materials are ready!🐣\n")
+
     input_file <- md_file
   } else if (file_ext != "md") {
-    stop("Unsupported file type: ", file_ext)
+    stop("😭Unsupported file type: ", file_ext)
   }
 
 
   # The following are the steps for text processing
   md_text <- read_markdown(input_file)
-  # Print a friendly success message
   message("\n🤩Start sorting out your writing materials!🌱\n")
   md_text <- duplicate_brackets_and_contents_with_lines(md_text)
   md_text <- add_heading_after_identical_brackets_pair(md_text)
@@ -278,27 +280,57 @@ get_Writing_materials <- function(input_file) {
   md_output_file <- paste0(output_base_name, ".md")
   write_markdown(final_text, md_output_file)
 
-  # Convert back to Word document
+  # Convert back to Word document with images
+  # This step should automatically handle image references in the Markdown file
   docx_output_file <- paste0(output_base_name, ".docx")
-  # Assume you're using rmarkdown's render function here to render the document
   rmarkdown::render(md_output_file, output_format = "word_document", output_file = docx_output_file)
-  # Print the path
-  print(md_output_file)
-  print(docx_output_file)
 
-  # Now, let's create the file names for the new version 2.2 copies
-  md_copy_file <- sub("2.1", "2.2", md_output_file)
-  docx_copy_file <- sub("2.1", "2.2", docx_output_file)
+  # message successfully generated filename messages
+  message(paste("🔥Successfully generated Markdown file：", basename(md_output_file)))
+  message(paste("🔥Successfully generated Word document：", basename(docx_output_file)))
+  # Get the current working directory
+  current_dir <- getwd()
 
-  # Copy the markdown file to the new version 2.2
-  file.copy(md_output_file, md_copy_file)
+  # Build full paths to source and destination files
+  source_file1 <- file.path(current_dir, docx_output_file)
+  target_file1 <- gsub("2.1", "2.2", source_file1)
 
-  # Copy the Word document file to the new version 2.2
-  file.copy(docx_output_file, docx_copy_file)
+  # Check whether the source file exists
+  if (!file.exists(source_file1)) {
+    stop("😭Source file does not exist: ", source_file1)
+  }
 
-  # Print the paths of the newly copied files
-  print(md_copy_file)
-  print(docx_copy_file)
+  #Perform file copy to allow overwriting of target files
+  file_copy_result1 <- file.copy(source_file1, target_file1, overwrite = TRUE)
+
+  # message successfully generated filename messages
+  if (file_copy_result1) {
+    message(paste("🔥Successfully replicated", basename(source_file1), "as", basename(target_file1)))
+  } else {
+    message("😭File copying failed.Please check the file path and permissions.")
+  }
+
+  # Build full paths to source and destination files
+  source_file2 <- file.path(current_dir, md_output_file)
+  target_file2 <- gsub("2.1", "2.2", source_file2)
+
+  # Check whether the source file exists
+  if (!file.exists(source_file2)) {
+    stop("😭Source file does not exist: ", source_file2)
+  }
+
+  #Perform file copy to allow overwriting of target files
+  file_copy_result <- file.copy(source_file2, target_file2, overwrite = TRUE)
+
+  # message successfully generated filename messages
+  if (file_copy_result) {
+    message(paste("🔥Successfully replicated", basename(source_file2), "as", basename(target_file2)))
+  } else {
+    message("😭File copying failed.Please check the file path and permissions.")
+  }
+
+
+
   # Assuming you have variables md_output_file and docx_output_file already set with the file paths
   # Create the file names for the new blank version 2.3
   md_blank_file <- sub("2.1", "2.3", md_output_file)
@@ -316,9 +348,13 @@ get_Writing_materials <- function(input_file) {
                     output_file = docx_blank_file,
                     quiet = TRUE) # quiet = TRUE to suppress messages
 
-  print(md_blank_file)
-  print(docx_blank_file)
-  # Print a friendly success message
-  message("\n😊Congratulations! Your writing material was successfully processed!🎉\n")
-}
 
+
+  # 打印成功生成的文件名消息
+  message(paste("🔥Successfully generated Markdown file：", basename(md_blank_file)))
+  message(paste("🔥Successfully generated Word document：", basename(docx_blank_file)))
+
+
+  # message a friendly success message
+  message("\n😊Congratulations! Your writing materials were successfully processed!🎉\n")
+}
