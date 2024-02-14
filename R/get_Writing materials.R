@@ -213,7 +213,7 @@ normalize_brackets_and_add_mark <- function(text) {
 
 # Main function to process the document and convert its format
 get_Writing_materials <- function(input_file) {
-  input_file='Figure legends-1.docx'
+  #input_file='Figure legends-1.docx'
   #input_file='Methods-1.docx'
   # Obtain the base name of the file without the extension
   base_name <- tools::file_path_sans_ext(basename(input_file))
