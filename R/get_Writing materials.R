@@ -255,10 +255,10 @@ get_Writing_materials <- function(input_file) {
     # Write back to the Markdown file
     write_markdown(md_text, md_file)
 
-    # message the path
-    message(paste("🔥Successfully generated Markdown file：", basename(md_file)))
+    # cat the path
+    cat(paste("🔥Successfully generated Markdown file：", basename(md_file)))
 
-    message("\n😍The writing materials are ready!🐣\n")
+    cat("\n😍The writing materials are ready!🐣\n")
 
     input_file <- md_file
   } else if (file_ext != "md") {
@@ -268,7 +268,7 @@ get_Writing_materials <- function(input_file) {
 
   # The following are the steps for text processing
   md_text <- read_markdown(input_file)
-  message("\n🤩Start sorting out your writing materials!🌱\n")
+  cat("\n🤩Start sorting out your writing materials!🌱\n")
   md_text <- duplicate_brackets_and_contents_with_lines(md_text)
   md_text <- add_heading_after_identical_brackets_pair(md_text)
   md_text <- normalize_brackets_and_add_mark(md_text)
@@ -285,9 +285,9 @@ get_Writing_materials <- function(input_file) {
   docx_output_file <- paste0(output_base_name, ".docx")
   rmarkdown::render(md_output_file, output_format = "word_document", output_file = docx_output_file)
 
-  # message successfully generated filename messages
-  message(paste("🔥Successfully generated Markdown file：", basename(md_output_file)))
-  message(paste("🔥Successfully generated Word document：", basename(docx_output_file)))
+  # cat successfully generated filename cats
+  cat(paste("🔥Successfully generated Markdown file：", basename(md_output_file)))
+  cat(paste("🔥Successfully generated Word document：", basename(docx_output_file)))
   # Get the current working directory
   current_dir <- getwd()
 
@@ -303,11 +303,11 @@ get_Writing_materials <- function(input_file) {
   #Perform file copy to allow overwriting of target files
   file_copy_result1 <- file.copy(source_file1, target_file1, overwrite = TRUE)
 
-  # message successfully generated filename messages
+  # cat successfully generated filename cats
   if (file_copy_result1) {
-    message(paste("🔥Successfully replicated", basename(source_file1), "as", basename(target_file1)))
+    cat(paste("🔥Successfully replicated", basename(source_file1), "as", basename(target_file1)))
   } else {
-    message("😭File copying failed.Please check the file path and permissions.")
+    cat("😭File copying failed.Please check the file path and permissions.")
   }
 
   # Build full paths to source and destination files
@@ -322,11 +322,11 @@ get_Writing_materials <- function(input_file) {
   #Perform file copy to allow overwriting of target files
   file_copy_result <- file.copy(source_file2, target_file2, overwrite = TRUE)
 
-  # message successfully generated filename messages
+  # cat successfully generated filename cats
   if (file_copy_result) {
-    message(paste("🔥Successfully replicated", basename(source_file2), "as", basename(target_file2)))
+    cat(paste("🔥Successfully replicated", basename(source_file2), "as", basename(target_file2)))
   } else {
-    message("😭File copying failed.Please check the file path and permissions.")
+    cat("😭File copying failed.Please check the file path and permissions.")
   }
 
 
@@ -346,15 +346,15 @@ get_Writing_materials <- function(input_file) {
   rmarkdown::render(input = md_blank_file,
                     output_format = "word_document",
                     output_file = docx_blank_file,
-                    quiet = TRUE) # quiet = TRUE to suppress messages
+                    quiet = TRUE) # quiet = TRUE to suppress cats
 
 
 
   # 打印成功生成的文件名消息
-  message(paste("🔥Successfully generated Markdown file：", basename(md_blank_file)))
-  message(paste("🔥Successfully generated Word document：", basename(docx_blank_file)))
+  cat(paste("🔥Successfully generated Markdown file：", basename(md_blank_file)))
+  cat(paste("🔥Successfully generated Word document：", basename(docx_blank_file)))
 
 
-  # message a friendly success message
-  message("\n😊Congratulations! Your writing materials were successfully processed!🎉\n")
+  # cat a friendly success cat
+  cat("\n😊Congratulations! Your writing materials were successfully processed!🎉\n")
 }
