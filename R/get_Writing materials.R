@@ -258,7 +258,7 @@ get_Writing_materials <- function(input_file) {
     # cat the path
     cat(paste("\n🔥Successfully generated Markdown file：", basename(md_file)))
 
-    cat("\n😍The writing materials are ready!🐣\n")
+    cat("\n\n😍The writing materials are ready!🐣")
 
     input_file <- md_file
   } else if (file_ext != "md") {
@@ -268,7 +268,7 @@ get_Writing_materials <- function(input_file) {
 
   # The following are the steps for text processing
   md_text <- read_markdown(input_file)
-  cat("\n🤩Start sorting out your writing materials!🌱\n")
+  cat("\n🤩Start sorting out your writing materials!🌱\n\n")
   md_text <- duplicate_brackets_and_contents_with_lines(md_text)
   md_text <- add_heading_after_identical_brackets_pair(md_text)
   md_text <- normalize_brackets_and_add_mark(md_text)
