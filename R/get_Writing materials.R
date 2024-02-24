@@ -256,13 +256,13 @@ get_Writing_materials <- function(input_file) {
     write_markdown(md_text, md_file)
 
     # cat the path
-    cat(paste("🔥Successfully generated Markdown file：", basename(md_file)))
+    cat(paste("\n🔥Successfully generated Markdown file：", basename(md_file)))
 
     cat("\n😍The writing materials are ready!🐣\n")
 
     input_file <- md_file
   } else if (file_ext != "md") {
-    stop("😭Unsupported file type: ", file_ext)
+    stop("\n😭Unsupported file type: ", file_ext)
   }
 
 
@@ -286,8 +286,8 @@ get_Writing_materials <- function(input_file) {
   rmarkdown::render(md_output_file, output_format = "word_document", output_file = docx_output_file)
 
   # cat successfully generated filename cats
-  cat(paste("🔥Successfully generated Markdown file：", basename(md_output_file)))
-  cat(paste("🔥Successfully generated Word document：", basename(docx_output_file)))
+  cat(paste("\n🔥Successfully generated Markdown file：", basename(md_output_file)))
+  cat(paste("\n🔥Successfully generated Word document：", basename(docx_output_file)))
   # Get the current working directory
   current_dir <- getwd()
 
@@ -297,7 +297,7 @@ get_Writing_materials <- function(input_file) {
 
   # Check whether the source file exists
   if (!file.exists(source_file1)) {
-    stop("😭Source file does not exist: ", source_file1)
+    stop("\n😭Source file does not exist: ", source_file1)
   }
 
   #Perform file copy to allow overwriting of target files
@@ -305,9 +305,9 @@ get_Writing_materials <- function(input_file) {
 
   # cat successfully generated filename cats
   if (file_copy_result1) {
-    cat(paste("🔥Successfully replicated", basename(source_file1), "as", basename(target_file1)))
+    cat(paste("\n🔥Successfully replicated", basename(source_file1), "as", basename(target_file1)))
   } else {
-    cat("😭File copying failed.Please check the file path and permissions.")
+    cat("\n😭File copying failed.Please check the file path and permissions.")
   }
 
   # Build full paths to source and destination files
@@ -316,7 +316,7 @@ get_Writing_materials <- function(input_file) {
 
   # Check whether the source file exists
   if (!file.exists(source_file2)) {
-    stop("😭Source file does not exist: ", source_file2)
+    stop("\n😭Source file does not exist: ", source_file2)
   }
 
   #Perform file copy to allow overwriting of target files
@@ -324,9 +324,9 @@ get_Writing_materials <- function(input_file) {
 
   # cat successfully generated filename cats
   if (file_copy_result) {
-    cat(paste("🔥Successfully replicated", basename(source_file2), "as", basename(target_file2)))
+    cat(paste("\n🔥Successfully replicated", basename(source_file2), "as", basename(target_file2)))
   } else {
-    cat("😭File copying failed.Please check the file path and permissions.")
+    cat("\n😭File copying failed.Please check the file path and permissions.\n")
   }
 
 
@@ -351,10 +351,10 @@ get_Writing_materials <- function(input_file) {
 
 
   # 打印成功生成的文件名消息
-  cat(paste("🔥Successfully generated Markdown file：", basename(md_blank_file)))
-  cat(paste("🔥Successfully generated Word document：", basename(docx_blank_file)))
+  cat(paste("\n🔥Successfully generated Markdown file：", basename(md_blank_file)))
+  cat(paste("\n🔥Successfully generated Word document：", basename(docx_blank_file)))
 
 
   # cat a friendly success cat
-  cat("\n😊Congratulations! Your writing materials were successfully processed!🎉\n")
+  cat("\n\n😊Congratulations! Your writing materials were successfully processed!🎉\n")
 }
