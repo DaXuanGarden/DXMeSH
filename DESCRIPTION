@@ -16,7 +16,14 @@ Imports:
     purrr,
     httr,
     rmarkdown,
-    stringi
+    stringi,
+    easyPubMed,
+    writexl,
+    knitr,
+    litsearchr,
+    ggplot2,
+    ggraph,
+    patchwork
 SystemRequirements: pandoc
 RoxygenNote: 7.2.3
 Suggests: 
