@@ -1,7 +1,7 @@
 Package: DXMeSH
 Type: Package
 Title: Generate PubMed Search Queries with MeSH Terms
-Version: 1.1.1
+Version: 1.1.2
 Author: DaXuan <daxuan111000@163.com>
 Maintainer: DaXuan <daxuan111000@163.com>
 Description: The DXMeSH package helps users generate search queries for PubMed.

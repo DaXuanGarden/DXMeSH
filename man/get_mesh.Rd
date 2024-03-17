@@ -4,7 +4,7 @@
 \alias{get_mesh}
 \title{get_mesh: Create Comprehensive and Accurate Search Queries Based on MeSH}
 \usage{
-get_mesh(csv_file)
+get_mesh(topics)
 }
 \arguments{
 \item{csv_file}{A string that specifies the path of the CSV file containing MeSH terms and their corresponding entries.}

@@ -8,7 +8,7 @@ library(devtools)
 # install.packages(c("devtools", "roxygen2", "usethis", "testthat"))
 #detach(package:DXMeSH)
 rm(list = c())
-
+#devtools::install_github("elizagrames/litsearchr") #安装litsearchr包
 # 在R控制台中运行以下命令
 library(roxygen2)
 roxygen2::roxygenize()
@@ -17,6 +17,7 @@ devtools::load_all()
 # Generate documentation
 roxygen2::roxygenize()
 devtools::document()
+
 # Check the package
 #check()
 
